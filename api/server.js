@@ -6,6 +6,7 @@ const carsRouter = require("../cars/cars-router.js");
 
 const server = express();
 
+server.use(express.json());
 server.use(helmet());
 server.use(logger("dev"));
 server.use("/api/cars", carsRouter);

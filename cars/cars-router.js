@@ -32,6 +32,20 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// router.post("/", (req, res) => {
+//   const acctData = req.body;
+//   console.log(req.body);
+//   db("cars")
+//     .insert(acctData)
+//     .then(account => {
+//       // console.log(account)
+//       res.status(201).json(account);
+//     })
+//     .catch(error => {
+//       res.status(500).json({ message: "failed to add account" });
+//     });
+// });
+
 router.post("/", (req, res) => {
   const carData = req.body;
 
