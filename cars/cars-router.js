@@ -1,13 +1,7 @@
 const express = require("express");
 const knex = require("knex");
 
-const db = knex({
-  client: "sqlite3",
-  connection: {
-    filename: "../data/cars.db3"
-  },
-  useNullAsDefault: true
-});
+const db = require("../data/dbConfig.js");
 
 const router = express.Router();
 
@@ -43,17 +37,12 @@ router.post("/", (req, res) => {
 
   db("cars")
     .insert(carData)
-    .then(ids => {
-      db("cars")
-        .where({ id: ids[0] })
-        .then(newCar => {
-          res.status(200).json({ newCar });
-        });
+    .then(newCar => {
+      res.status(201).json(newCar);
     })
     .catch(error => {
-      console.log("POST error", error);
       res.status(500).json({
-        message: "Unable to POST your car data"
+        message: "Unable to POST your new car"
       });
     });
 });
